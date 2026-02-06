@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Automation Technician | Smart Building Career Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-blue: #0EA5E9;
+            --primary-green: #10B981;
+            --deep-blue: #0C4A6E;
+            --light-blue: #E0F2FE;
+            --accent-teal: #14B8A6;
+            --accent-cyan: #06B6D4;
+            --dark-slate: #0F172A;
+            --mid-slate: #1E293B;
+            --light-slate: #334155;
+            --text-white: #F8FAFC;
+            --text-gray: #94A3B8;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --shadow: rgba(14, 165, 233, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: var(--text-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated building silhouette background */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40vh;
+            background: linear-gradient(to top, rgba(14, 165, 233, 0.05), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Floating particles effect */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
+        }
+
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation: float 6s infinite; }
+        .particle:nth-child(2) { left: 30%; top: 40%; animation: float 8s infinite 1s; }
+        .particle:nth-child(3) { left: 50%; top: 60%; animation: float 7s infinite 2s; }
+        .particle:nth-child(4) { left: 70%; top: 30%; animation: float 9s infinite 1.5s; }
+        .particle:nth-child(5) { left: 90%; top: 50%; animation: float 6.5s infinite 0.5s; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with glass morphism */
+        header {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px var(--shadow);
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green), var(--accent-cyan));
+            background-size: 200% 100%;
+            animation: gradientShift 3s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-gray);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Section cards */
+        .section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s backwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section:hover::before {
+            opacity: 1;
+        }
+
+        .section:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 15px 50px var(--shadow);
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--primary-blue), var(--primary-green));
+            border-radius: 3px;
+        }
+
+        .section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.3rem, 2vw, 1.7rem);
+            margin: 30px 0 20px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 50px var(--shadow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .feature-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .feature-card ul {
+            margin-top: 15px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .feature-card li {
+            color: var(--text-gray);
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .feature-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        /* Lists */
+        ul:not(.feature-card ul) {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li:not(.feature-card li) {
+            margin: 12px 0;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        ul:not(.feature-card ul) li::marker {
+            color: var(--primary-blue);
+            font-size: 1.2em;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .info-box strong {
+            color: var(--primary-blue);
+            font-size: 1.15rem;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--primary-green);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .success-box strong {
+            color: var(--primary-green);
+            font-size: 1.15rem;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .warning-box strong {
+            color: var(--warning);
+            font-size: 1.15rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: rgba(14, 165, 233, 0.2);
+        }
+
+        th {
+            padding: 18px 20px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+            color: var(--text-gray);
+            font-size: 1.05rem;
+        }
+
+        tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        /* Progress tracking */
+        .progress-item {
+            margin: 20px 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-title {
+            font-weight: 500;
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+
+        .progress-percentage {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary-blue), var(--primary-green));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 12px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+
+        .timeline-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .timeline-meta {
+            color: var(--accent-cyan);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* Code blocks */
+        code {
+            background: rgba(14, 165, 233, 0.15);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 40px 25px;
+                border-radius: 16px;
+            }
+
+            .section {
+                padding: 25px 20px;
+                border-radius: 16px;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-slate);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-blue), var(--primary-green));
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-blue);
+        }
+
+        /* Accordion */
+        .accordion-item {
+            margin: 20px 0;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background: rgba(14, 165, 233, 0.1);
+        }
+
+        .accordion-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 25px;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--primary-blue);
+            border-radius: 20px;
+            color: var(--primary-blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 5px;
+        }
+
+        .badge.green {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .badge.orange {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+    </style>
+</head>
+<body>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="container">
+        <header>
+            <h1>Building Automation Technician</h1>
+            <div class="tagline">Master Smart Building Systems & Climate Control Technology</div>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat-card">
+                <span class="stat-value">$55K-$95K</span>
+                <span class="stat-label">Annual Salary Range</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">15%+</span>
+                <span class="stat-label">Job Growth (2024-2034)</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">HIGH</span>
+                <span class="stat-label">Industry Demand</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">24/7</span>
+                <span class="stat-label">Critical Systems</span>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <section class="section">
+            <h2>Career Overview</h2>
+            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">
+                Building Automation Technicians are the specialists who install, program, maintain, and troubleshoot intelligent building systems that control HVAC (heating, ventilation, and air conditioning), lighting, security, fire safety, and energy management in commercial buildings, hospitals, schools, data centers, and industrial facilities.
+            </p>
+
+            <div class="info-box">
+                <strong>What is Building Automation?</strong><br>
+                Building Automation Systems (BAS), also called Building Management Systems (BMS), use networked sensors, controllers, and software to automatically monitor and control mechanical and electrical equipment. These systems optimize comfort, energy efficiency, and operational costs while enabling remote monitoring and predictive maintenance.
+            </div>
+
+            <h3>Core Responsibilities</h3>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔧</span>
+                    <h4>Installation & Setup</h4>
+                    <ul>
+                        <li>Install sensors, controllers, and actuators</li>
+                        <li>Run control wiring and network cables</li>
+                        <li>Mount and configure equipment</li>
+                        <li>Commission new systems</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💻</span>
+                    <h4>Programming & Configuration</h4>
+                    <ul>
+                        <li>Program BAS controllers and sequences</li>
+                        <li>Configure graphics and dashboards</li>
+                        <li>Set up schedules and alarms</li>
+                        <li>Integrate multiple systems</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h4>Troubleshooting & Repair</h4>
+                    <ul>
+                        <li>Diagnose system malfunctions</li>
+                        <li>Replace faulty components</li>
+                        <li>Resolve communication issues</li>
+                        <li>Emergency service calls</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🛠️</span>
+                    <h4>Maintenance & Optimization</h4>
+                    <ul>
+                        <li>Perform preventive maintenance</li>
+                        <li>Calibrate sensors and devices</li>
+                        <li>Optimize control sequences</li>
+                        <li>Generate performance reports</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section">
+            <h2>Essential Skills & Knowledge</h2>
+
+            <h3>Technical Competencies</h3>
+            
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">HVAC Systems Knowledge</span>
+                    <span class="progress-percentage">CRITICAL</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" style="width: 95%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">BAS Programming (DDC Controllers)</span>
+                    <span class="progress-percentage">CRITICAL</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">Networking & IT Fundamentals</span>
+                    <span class="progress-percentage">HIGH</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" style="width: 80%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">Electrical Troubleshooting</span>
+                    <span class="progress-percentage">HIGH</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+            </div>
+
+            <h3>Platform-Specific Skills</h3>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🏢</span>
+                    <h4>Major BAS Platforms</h4>
+                    <ul>
+                        <li>Johnson Controls Metasys</li>
+                        <li>Honeywell Enterprise Buildings Integrator (EBI)</li>
+                        <li>Siemens Desigo</li>
+                        <li>Trane Tracer</li>
+                        <li>Schneider Electric EcoStruxure</li>
+                        <li>Automated Logic WebCTRL</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h4>Communication Protocols</h4>
+                    <ul>
+                        <li>BACnet (IP, MSTP)</li>
+                        <li>Modbus (RTU, TCP)</li>
+                        <li>LonWorks</li>
+                        <li>KNX</li>
+                        <li>Ethernet/IP</li>
+                        <li>OPC/OPC UA</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🛠️</span>
+                    <h4>Tools & Equipment</h4>
+                    <ul>
+                        <li>Multimeters & clamp meters</li>
+                        <li>Network testing tools</li>
+                        <li>Laptop with BAS software</li>
+                        <li>Temperature/humidity meters</li>
+                        <li>Wire tracers & testers</li>
+                        <li>Hand tools & power tools</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📚</span>
+                    <h4>Knowledge Areas</h4>
+                    <ul>
+                        <li>HVAC psychrometrics</li>
+                        <li>Control theory & sequences</li>
+                        <li>IP networking & subnetting</li>
+                        <li>Electrical schematics</li>
+                        <li>Energy efficiency principles</li>
+                        <li>Building codes & standards</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Training -->
+        <section class="section">
+            <h2>Education & Certification Pathways</h2>
+
+            <h3>Educational Requirements</h3>
+            <ul>
+                <li><strong>High School Diploma or GED:</strong> Minimum requirement for entry-level positions</li>
+                <li><strong>Associate Degree (Preferred):</strong> HVAC Technology, Building Automation, Electrical Technology, or related field</li>
+                <li><strong>Trade School Certificates:</strong> HVAC/R technician programs with controls emphasis</li>
+                <li><strong>Apprenticeships:</strong> 2-4 year programs combining classroom and hands-on training</li>
+            </ul>
+
+            <h3>Industry Certifications</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Certification</th>
+                        <th>Issuing Organization</th>
+                        <th>Value & Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Certified Building Automation Professional (CBAP)</td>
+                        <td>BOMA</td>
+                        <td>Industry-recognized credential for BAS professionals</td>
+                    </tr>
+                    <tr>
+                        <td>BACnet Testing Laboratories (BTL) Certification</td>
+                        <td>ASHRAE</td>
+                        <td>Protocol expertise validation</td>
+                    </tr>
+                    <tr>
+                        <td>EPA 608 Certification</td>
+                        <td>EPA</td>
+                        <td>Required for handling refrigerants (Type II or Universal)</td>
+                    </tr>
+                    <tr>
+                        <td>NATE Certification</td>
+                        <td>NATE</td>
+                        <td>HVAC service excellence</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturer Certifications</td>
+                        <td>Johnson Controls, Honeywell, Siemens, etc.</td>
+                        <td>Platform-specific expertise (highly valued)</td>
+                    </tr>
+                    <tr>
+                        <td>LEED Green Associate</td>
+                        <td>USGBC</td>
+                        <td>Energy efficiency and sustainability knowledge</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>Pro Tip:</strong> Manufacturer-specific certifications (like Johnson Controls Certified Technician or Honeywell Building Controls Specialist) are often the most valuable for employment, as many companies specialize in particular platforms.
+            </div>
+        </section>
+
+        <!-- Career Path -->
+        <section class="section">
+            <h2>Career Progression Timeline</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Entry Level (0-2 years)</div>
+                    <div class="timeline-meta">BAS Technician Trainee / Helper | $40,000 - $55,000</div>
+                    <p style="color: var(--text-gray); margin-top: 10px;">
+                        Learn system basics, assist senior technicians with installations, perform simple troubleshooting, run cables, mount devices, and gain hands-on experience with one or two BAS platforms under supervision.
+                    </p>
+                    <div style="margin-top: 10px;">
+                        <span class="badge">On-the-job training</span>
+                        <span class="badge green">First certifications</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Mid-Level (2-5 years)</div>
+                    <div class="timeline-meta">Building Automation Technician | $55,000 - $75,000</div>
+                    <p style="color: var(--text-gray); margin-top: 10px;">
+                        Independent system installation and programming, handle service calls, troubleshoot complex issues, configure graphics and dashboards, perform preventive maintenance, and develop customer relationships.
+                    </p>
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Advanced certifications</span>
+                        <span class="badge green">Multi-platform skills</span>
+                        <span class="badge orange">Customer-facing</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Senior Level (5-10 years)</div>
+                    <div class="timeline-meta">Senior BAS Technician / Lead Technician | $75,000 - $95,000</div>
+                    <p style="color: var(--text-gray); margin-top: 10px;">
+                        Lead complex projects, mentor junior technicians, design control sequences, perform system integration, optimize energy performance, handle high-value clients, and provide technical escalation support.
+                    </p>
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Project leadership</span>
+                        <span class="badge green">Energy optimization</span>
+                        <span class="badge orange">Mentoring</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Advanced (10+ years)</div>
+                    <div class="timeline-meta">BAS Engineer / Controls Manager / Regional Manager | $90,000 - $120,000+</div>
+                    <p style="color: var(--text-gray); margin-top: 10px;">
+                        System design and engineering, department management, strategic planning, business development, training development, contract negotiations, and overseeing multiple technicians and projects across regions.
+                    </p>
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Management</span>
+                        <span class="badge green">Engineering design</span>
+                        <span class="badge orange">Business development</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Alternative Career Paths</h3>
+            <ul>
+                <li><strong>Controls Engineer:</strong> Focus on design, specification, and engineering of BAS projects</li>
+                <li><strong>Energy Manager:</strong> Specialize in optimizing building energy performance and sustainability</li>
+                <li><strong>BAS Programmer/Developer:</strong> Create custom software, graphics, and integration solutions</li>
+                <li><strong>Technical Sales Engineer:</strong> Combine technical knowledge with client-facing sales roles</li>
+                <li><strong>Commissioning Specialist:</strong> Focus on testing and optimizing new building systems</li>
+                <li><strong>Independent Contractor:</strong> Start your own BAS service and consulting business</li>
+                <li><strong>Facility Manager:</strong> Transition to overall building operations management</li>
+            </ul>
+        </section>
+
+        <!-- Work Environment -->
+        <section class="section">
+            <h2>Work Environment & Daily Life</h2>
+
+            <h3>Typical Work Settings</h3>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🏢</span>
+                    <h4>Commercial Buildings</h4>
+                    <p>Office towers, shopping centers, hotels, and mixed-use developments with sophisticated climate control needs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🏥</span>
+                    <h4>Healthcare Facilities</h4>
+                    <p>Hospitals, medical centers, and clinics requiring precise environmental controls and 24/7 reliability.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🏫</span>
+                    <h4>Educational Institutions</h4>
+                    <p>Universities, schools, and research facilities with diverse HVAC zones and occupancy schedules.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🏭</span>
+                    <h4>Industrial & Data Centers</h4>
+                    <p>Manufacturing plants and server facilities with critical temperature and humidity requirements.</p>
+                </div>
+            </div>
+
+            <h3>Work Schedule & Travel</h3>
+            <div class="info-box">
+                <strong>Schedule Flexibility:</strong><br>
+                • <strong>Standard Hours:</strong> Typically 40 hours/week, Monday-Friday (7am-4pm or 8am-5pm)<br>
+                • <strong>On-Call Rotation:</strong> Emergency service availability (evenings, weekends, holidays)<br>
+                • <strong>Overtime:</strong> Common during project installations and peak seasons<br>
+                • <strong>Travel:</strong> Local daily travel to customer sites (25-75% depending on role)<br>
+                • <strong>Company Vehicle:</strong> Often provided with tools and equipment<br>
+                • <strong>Remote Work:</strong> Some programming and troubleshooting can be done remotely
+            </div>
+
+            <h3>Physical Requirements</h3>
+            <div class="warning-box">
+                <strong>What to Expect:</strong><br>
+                • Working at heights (ladders, lifts, rooftops for rooftop units)<br>
+                • Climbing stairs and accessing mechanical rooms<br>
+                • Occasionally tight spaces (ceiling plenums, equipment rooms)<br>
+                • Lifting equipment and tools (up to 50 lbs)<br>
+                • Standing and walking throughout the day<br>
+                • Exposure to temperature extremes (mechanical rooms, rooftops)<br>
+                • Computer work for programming and documentation
+            </div>
+        </section>
+
+        <!-- Technical Deep Dive -->
+        <section class="section">
+            <h2>Technical Knowledge Deep Dive</h2>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span class="accordion-title">BAS System Architecture & Components</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 15px;">System Layers:</h4>
+                        <ul>
+                            <li><strong>Management Level:</strong> Servers, workstations, web interfaces for monitoring and control</li>
+                            <li><strong>Automation Level:</strong> Field controllers (DDC - Direct Digital Control) that execute control logic</li>
+                            <li><strong>Field Level:</strong> Sensors, actuators, and devices connected to controllers</li>
+                        </ul>
+
+                        <h4 style="color: var(--primary-blue); margin: 20px 0 15px;">Key Components:</h4>
+                        <ul>
+                            <li><strong>Controllers:</strong> Microprocessor-based devices running control programs (e.g., VAV box controllers, AHU controllers)</li>
+                            <li><strong>Sensors:</strong> Temperature, humidity, pressure, CO2, airflow, occupancy sensors</li>
+                            <li><strong>Actuators:</strong> Damper actuators, valve actuators that modulate airflow and water flow</li>
+                            <li><strong>Variable Frequency Drives (VFDs):</strong> Control motor speeds for fans and pumps</li>
+                            <li><strong>Input/Output Modules:</strong> Analog inputs (AI), digital inputs (DI), analog outputs (AO), digital outputs (DO)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span class="accordion-title">Common HVAC Control Sequences</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <ul>
+                            <li><strong>VAV (Variable Air Volume) Box Control:</strong> Modulates damper position based on zone temperature setpoint; may include reheat coil control</li>
+                            <li><strong>Air Handler Unit (AHU) Sequences:</strong> Controls supply air temperature through mixing dampers, heating/cooling coils; manages static pressure with VFD fan control</li>
+                            <li><strong>Chiller Plant Optimization:</strong> Sequences multiple chillers, pumps, and cooling towers for optimal energy efficiency</li>
+                            <li><strong>Free Cooling (Economizer):</strong> Uses outside air for cooling when conditions permit, reducing mechanical cooling load</li>
+                            <li><strong>Demand Controlled Ventilation:</strong> Adjusts outside air based on occupancy (CO2 levels)</li>
+                            <li><strong>Night Setback/Occupied/Unoccupied Modes:</strong> Energy-saving schedules based on building occupancy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span class="accordion-title">Troubleshooting Methodology</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Systematic Approach:</h4>
+                        <ol style="list-style-position: inside; color: var(--text-gray);">
+                            <li><strong>Gather Information:</strong> What's the complaint? When did it start? What changed?</li>
+                            <li><strong>Check the BAS:</strong> Review graphics, alarms, trends, and sensor values</li>
+                            <li><strong>Verify Field Devices:</strong> Check actual temperatures, pressures, positions vs. BAS readings</li>
+                            <li><strong>Check Power & Wiring:</strong> Verify voltage at devices, check for loose connections</li>
+                            <li><strong>Test Communications:</strong> Verify network connectivity, check for offline devices</li>
+                            <li><strong>Review Control Logic:</strong> Examine sequences, setpoints, and overrides</li>
+                            <li><strong>Isolate the Problem:</strong> Use process of elimination to narrow down root cause</li>
+                            <li><strong>Implement Fix & Test:</strong> Make repairs, verify operation, monitor results</li>
+                            <li><strong>Document:</strong> Record findings, actions taken, and recommendations</li>
+                        </ol>
+
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(14, 165, 233, 0.1); border-radius: 8px;">
+                            <strong style="color: var(--primary-blue);">Common Issues:</strong><br>
+                            • Communication failures (check network cables, IP addresses, switches)<br>
+                            • Sensor calibration drift (verify with known-good instrument)<br>
+                            • Failed actuators (check power, control signal, mechanical binding)<br>
+                            • Software/programming errors (logic errors, incorrect setpoints)<br>
+                            • Power supply problems (check voltage, fuses, circuit breakers)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span class="accordion-title">Networking Fundamentals for BAS</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <h4 style="color: var(--primary-blue); margin-bottom: 15px;">Essential Networking Knowledge:</h4>
+                        <ul>
+                            <li><strong>IP Addressing:</strong> Understanding static IPs, DHCP, subnet masks, and gateways</li>
+                            <li><strong>Network Segmentation:</strong> VLANs for separating BAS traffic from corporate networks</li>
+                            <li><strong>Ethernet Basics:</strong> Cat5e/Cat6 cabling, switches, port speeds (10/100/1000 Mbps)</li>
+                            <li><strong>BACnet/IP:</strong> Most common protocol; uses UDP port 47808</li>
+                            <li><strong>Network Troubleshooting:</strong> Ping, traceroute, checking switch port status and activity</li>
+                            <li><strong>Cybersecurity:</strong> Firewalls, network isolation, password policies, patch management</li>
+                        </ul>
+
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                            <strong style="color: var(--primary-green);">BACnet Quick Reference:</strong><br>
+                            • <code>BACnet/IP</code> - Runs over Ethernet (most common in new systems)<br>
+                            • <code>BACnet MS/TP</code> - Serial communication over RS-485 (legacy field buses)<br>
+                            • <strong>Objects:</strong> Analog Input (AI), Analog Output (AO), Binary Input (BI), Binary Output (BO), etc.<br>
+                            • <strong>BBMD:</strong> BACnet Broadcast Management Device for routing across subnets
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Insights -->
+        <section class="section">
+            <h2>Industry Trends & Future Outlook</h2>
+
+            <div class="success-box">
+                <strong>Market Outlook:</strong> The Building Automation Systems market is projected to grow significantly (15%+ annually) driven by smart building adoption, energy efficiency mandates, IoT integration, and the need to modernize aging building infrastructure. Demand for skilled technicians far exceeds supply in most markets.
+            </div>
+
+            <h3>Emerging Technologies & Trends</h3>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">☁️</span>
+                    <h4>Cloud-Based BAS</h4>
+                    <p>Cloud platforms enabling remote monitoring, analytics, and control from anywhere. Subscription-based models reducing upfront costs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h4>AI & Machine Learning</h4>
+                    <p>Predictive maintenance, fault detection diagnostics (FDD), and autonomous optimization of building performance.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h4>IoT Integration</h4>
+                    <p>Wireless sensors, edge computing, and integration with smart meters, lighting, and occupancy systems.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔋</span>
+                    <h4>Energy Storage & Microgrids</h4>
+                    <p>Integration of battery storage, solar panels, and demand response programs for grid flexibility.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h4>Cybersecurity Focus</h4>
+                    <p>Increasing emphasis on securing building systems against cyber threats and ransomware attacks.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🌱</span>
+                    <h4>Sustainability & ESG</h4>
+                    <p>Green building certifications, carbon reduction goals, and ESG (Environmental, Social, Governance) reporting requirements.</p>
+                </div>
+            </div>
+
+            <h3>Skills to Develop for Future Success</h3>
+            <ul>
+                <li>Cloud platform expertise (AWS IoT, Azure IoT, Google Cloud)</li>
+                <li>Data analytics and visualization (understanding building data)</li>
+                <li>Cybersecurity fundamentals for OT (operational technology) networks</li>
+                <li>Wireless technologies (LoRaWAN, NB-IoT, 5G for buildings)</li>
+                <li>Advanced BACnet features (routing, BBMD, network security)</li>
+                <li>API integration and web services (RESTful APIs, JSON)</li>
+                <li>Energy modeling and commissioning methodologies</li>
+                <li>Smart grid and demand response programs</li>
+            </ul>
+        </section>
+
+        <!-- Job Search -->
+        <section class="section">
+            <h2>Landing Your First Job</h2>
+
+            <h3>Where to Find Jobs</h3>
+            <ul>
+                <li><strong>BAS Contractors:</strong> Companies specializing in Johnson Controls, Honeywell, Siemens, Trane systems</li>
+                <li><strong>Mechanical Contractors:</strong> HVAC companies with controls divisions</li>
+                <li><strong>Facility Management Companies:</strong> CBRE, JLL, Cushman & Wakefield (in-house teams)</li>
+                <li><strong>Manufacturers:</strong> Direct employment with Johnson Controls, Honeywell, Siemens, Schneider Electric</li>
+                <li><strong>System Integrators:</strong> Companies that design and implement building automation projects</li>
+                <li><strong>Job Boards:</strong> Indeed, LinkedIn, HVAC Jobs, ControlTrends Jobs</li>
+            </ul>
+
+            <h3>Resume & Interview Tips</h3>
+            <div class="info-box">
+                <strong>Highlight These Skills:</strong><br>
+                • Specific BAS platforms you've worked with (Metasys, WebCTRL, Desigo, etc.)<br>
+                • Programming languages/tools (graphical programming, scripting)<br>
+                • Networking knowledge (BACnet, Modbus, IP networking)<br>
+                • HVAC system understanding (AHU, VAV, chillers, boilers)<br>
+                • Certifications (manufacturer, EPA 608, NATE, etc.)<br>
+                • Troubleshooting achievements (resolved complex issues, reduced downtime)<br>
+                • Customer service skills (work directly with building owners/engineers)
+            </div>
+
+            <h3>Interview Questions to Prepare For</h3>
+            <ul>
+                <li>Explain how a VAV box works and how it's controlled</li>
+                <li>What's the difference between BACnet/IP and BACnet MS/TP?</li>
+                <li>How would you troubleshoot a zone that's too hot?</li>
+                <li>What is an economizer and how does it save energy?</li>
+                <li>Describe your experience with [specific BAS platform]</li>
+                <li>How do you handle emergency service calls?</li>
+                <li>What safety precautions do you take when working on electrical equipment?</li>
+                <li>Tell me about a challenging troubleshooting situation you resolved</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>What Employers Value Most:</strong><br>
+                1. <strong>Problem-Solving Ability:</strong> Can you diagnose and fix issues independently?<br>
+                2. <strong>Customer Service:</strong> Can you communicate effectively with non-technical building staff?<br>
+                3. <strong>Continuous Learning:</strong> Are you keeping up with new technologies?<br>
+                4. <strong>Reliability:</strong> Will you show up on time and complete work professionally?<br>
+                5. <strong>Platform Experience:</strong> Hands-on experience with their specific BAS platform
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="section">
+            <h2>Professional Resources & Learning</h2>
+
+            <h3>Professional Organizations</h3>
+            <ul>
+                <li><strong>ASHRAE (American Society of Heating, Refrigerating and Air-Conditioning Engineers):</strong> Standards, education, and networking - www.ashrae.org</li>
+                <li><strong>BOMA (Building Owners and Managers Association):</strong> Building automation professional development - www.boma.org</li>
+                <li><strong>AEE (Association of Energy Engineers):</strong> Energy efficiency and building systems - www.aeecenter.org</li>
+                <li><strong>BACnet International:</strong> Protocol standardization and education - www.bacnetinternational.org</li>
+            </ul>
+
+            <h3>Training & Learning Platforms</h3>
+            <ul>
+                <li><strong>Manufacturer Training:</strong> Johnson Controls, Honeywell, Siemens, Trane offer extensive courses</li>
+                <li><strong>Online Courses:</strong> Udemy (BACnet, HVAC controls), LinkedIn Learning</li>
+                <li><strong>YouTube Channels:</strong> The Engineering Mindset, MEP Academy, HVAC School</li>
+                <li><strong>Forums & Communities:</strong> r/BAS (Reddit), ControlTrends Community, HVAC-Talk</li>
+                <li><strong>Books:</strong> "Understanding Modern Control Systems" by Robert McDowall, ASHRAE Handbooks</li>
+            </ul>
+
+            <h3>Recommended Reading</h3>
+            <ul>
+                <li>"Fundamentals of HVAC Control Systems" - ASHRAE</li>
+                <li>"BACnet for Building Automation Systems" - Bill Swan</li>
+                <li>"HVAC Systems Design Handbook" - Roger Haines</li>
+                <li>"Building Automation: Communication Systems with EIB/KNX, LON and BACnet"</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>BUILDING AUTOMATION TECHNICIAN GUIDE</strong></p>
+            <p>Your pathway to a rewarding career in smart building technology</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">
+                Version 1.0 | 2025 Edition<br>
+                This guide provides general career information. Requirements vary by location and employer.<br>
+                Always verify certification requirements and local regulations.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.parentElement;
+                const wasActive = item.classList.contains('active');
+                
+                // Close all accordions
+                document.querySelectorAll('.accordion-item').forEach(acc => {
+                    acc.classList.remove('active');
+                });
+                
+                // Open clicked accordion if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Animate progress bars on scroll
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

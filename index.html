@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Controls & Automation Career Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Control Panel Theme */
+            --cp-primary: #FF6B00;
+            --cp-secondary: #00D4FF;
+            --cp-dark: #0A0E1A;
+            --cp-grid: #2A3F5F;
+            
+            /* BAS Theme */
+            --bas-blue: #0EA5E9;
+            --bas-green: #10B981;
+            --bas-teal: #14B8A6;
+            
+            /* Shared */
+            --dark: #0F172A;
+            --mid-dark: #1E293B;
+            --text-light: #F8FAFC;
+            --text-gray: #94A3B8;
+            --success: #22C55E;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Background effects */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Header */
+        .main-header {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 24px;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cp-primary), var(--bas-blue), var(--bas-green), var(--cp-secondary));
+            background-size: 200% 100%;
+            animation: gradientShift 4s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--cp-primary), var(--bas-blue), var(--bas-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .main-tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-gray);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Career Selection Cards */
+        .career-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .career-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .career-card.control-panel {
+            border-color: rgba(255, 107, 0, 0.2);
+        }
+
+        .career-card.control-panel::before {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(0, 212, 255, 0.1));
+        }
+
+        .career-card.control-panel:hover {
+            border-color: var(--cp-primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 107, 0, 0.3);
+        }
+
+        .career-card.building-automation {
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .career-card.building-automation::before {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+        }
+
+        .career-card.building-automation:hover {
+            border-color: var(--bas-blue);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.3);
+        }
+
+        .career-card:hover::before {
+            opacity: 1;
+        }
+
+        .career-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+
+        .career-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .career-card.control-panel h2 {
+            color: var(--cp-primary);
+        }
+
+        .career-card.building-automation h2 {
+            color: var(--bas-blue);
+        }
+
+        .career-description {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .career-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            font-size: 0.95rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+        }
+
+        .stat-value {
+            font-weight: 600;
+        }
+
+        .career-card.control-panel .stat-value {
+            color: var(--cp-secondary);
+        }
+
+        .career-card.building-automation .stat-value {
+            color: var(--bas-green);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-bar.active {
+            display: flex;
+        }
+
+        .nav-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--bas-blue);
+            color: var(--text-light);
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--bas-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Section styling */
+        .section {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s backwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--bas-blue), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section:hover::before {
+            opacity: 1;
+        }
+
+        .section:hover {
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 15px 50px rgba(14, 165, 233, 0.15);
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 25px;
+            color: var(--bas-blue);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Control Panel Theme Override */
+        .control-panel-content .section {
+            border-left: 4px solid var(--cp-primary);
+        }
+
+        .control-panel-content .section h2 {
+            color: var(--cp-primary);
+        }
+
+        .control-panel-content .section h2::before {
+            content: '▸';
+            color: var(--cp-secondary);
+            font-size: 1.5em;
+        }
+
+        /* BAS Theme */
+        .building-automation-content .section h2::before {
+            content: '';
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--bas-blue), var(--bas-green));
+            border-radius: 3px;
+        }
+
+        .section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.3rem, 2vw, 1.7rem);
+            margin: 30px 0 20px;
+            color: var(--bas-teal);
+            font-weight: 600;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--bas-teal);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--bas-teal);
+        }
+
+        /* Lists */
+        ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 12px 0;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        ul li::marker {
+            color: var(--bas-blue);
+            font-size: 1.2em;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 4px solid var(--bas-blue);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .info-box strong {
+            color: var(--bas-blue);
+            font-size: 1.15rem;
+        }
+
+        .success-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--bas-green);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .success-box strong {
+            color: var(--bas-green);
+            font-size: 1.15rem;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .warning-box strong {
+            color: var(--warning);
+            font-size: 1.15rem;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(16, 185, 129, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bas-blue);
+            box-shadow: 0 15px 50px rgba(14, 165, 233, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .feature-card h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--bas-blue);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p, .feature-card ul {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .feature-card ul {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .feature-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--bas-green);
+            font-weight: bold;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: rgba(14, 165, 233, 0.2);
+        }
+
+        th {
+            padding: 18px 20px;
+            text-align: left;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--bas-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+            color: var(--text-gray);
+            font-size: 1.05rem;
+        }
+
+        tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            margin: 40px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+        }
+
+        .comparison-card.cp {
+            border-color: var(--cp-primary);
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.05), rgba(0, 212, 255, 0.05));
+        }
+
+        .comparison-card.bas {
+            border-color: var(--bas-blue);
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05));
+        }
+
+        .comparison-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .comparison-card.cp .comparison-title {
+            color: var(--cp-primary);
+        }
+
+        .comparison-card.bas .comparison-title {
+            color: var(--bas-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .main-header {
+                padding: 40px 25px;
+                border-radius: 16px;
+            }
+
+            .career-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 25px 20px;
+                border-radius: 16px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-bar {
+                top: 10px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--bas-blue), var(--bas-green));
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bas-blue);
+        }
+
+        /* Code */
+        code {
+            background: rgba(14, 165, 233, 0.15);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--bas-teal);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--bas-blue);
+            border-radius: 20px;
+            color: var(--bas-blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 5px;
+        }
+
+        .badge.green {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--bas-green);
+            color: var(--bas-green);
+        }
+
+        .badge.orange {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <div class="main-header">
+            <h1>Industrial Controls & Automation</h1>
+            <div class="main-tagline">Complete Career Guide for Technical Specialists</div>
+        </div>
+
+        <!-- Career Selection -->
+        <div id="career-selection" class="career-selector">
+            <div class="career-card control-panel" onclick="showCareer('control-panel')">
+                <span class="career-icon">⚡</span>
+                <h2>Control Panel Technician</h2>
+                <p class="career-description">
+                    Design, build, and maintain electrical control panels for industrial automation, manufacturing equipment, and process control systems.
+                </p>
+                <div class="career-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Salary Range</span>
+                        <span class="stat-value">$45K - $85K</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Work Environment</span>
+                        <span class="stat-value">Shop & Field</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Primary Focus</span>
+                        <span class="stat-value">Panel Assembly & PLC</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Travel</span>
+                        <span class="stat-value">Moderate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="career-card building-automation" onclick="showCareer('building-automation')">
+                <span class="career-icon">🏢</span>
+                <h2>Building Automation Technician</h2>
+                <p class="career-description">
+                    Install, program, and service intelligent building systems controlling HVAC, lighting, and energy management in commercial facilities.
+                </p>
+                <div class="career-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">Salary Range</span>
+                        <span class="stat-value">$55K - $95K</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Work Environment</span>
+                        <span class="stat-value">Commercial Buildings</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Primary Focus</span>
+                        <span class="stat-value">BAS & HVAC Controls</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Travel</span>
+                        <span class="stat-value">High (Field Service)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div id="comparison-section" class="comparison-section">
+            <div class="section">
+                <h2>Career Path Comparison</h2>
+                <p style="font-size: 1.15rem; margin-bottom: 30px;">
+                    Both careers offer excellent opportunities in the industrial automation field. Here's a side-by-side comparison to help you choose the right path:
+                </p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card cp">
+                        <div class="comparison-title">Control Panel Technician</div>
+                        <h4 style="color: var(--cp-secondary); margin: 20px 0 10px;">Best For:</h4>
+                        <ul>
+                            <li>Those who enjoy hands-on electrical work</li>
+                            <li>Building things from scratch</li>
+                            <li>Working with PLCs and industrial controls</li>
+                            <li>Mixed shop/field environment</li>
+                        </ul>
+
+                        <h4 style="color: var(--cp-secondary); margin: 20px 0 10px;">Key Skills:</h4>
+                        <ul>
+                            <li>Reading electrical schematics</li>
+                            <li>Wire termination & panel assembly</li>
+                            <li>PLC programming (ladder logic)</li>
+                            <li>Motor controls & drives</li>
+                            <li>NEC code compliance</li>
+                        </ul>
+
+                        <h4 style="color: var(--cp-secondary); margin: 20px 0 10px;">Industries:</h4>
+                        <ul>
+                            <li>Manufacturing plants</li>
+                            <li>Panel fabrication shops</li>
+                            <li>System integrators</li>
+                            <li>Industrial equipment OEMs</li>
+                        </ul>
+                    </div>
+
+                    <div class="comparison-card bas">
+                        <div class="comparison-title">Building Automation Technician</div>
+                        <h4 style="color: var(--bas-green); margin: 20px 0 10px;">Best For:</h4>
+                        <ul>
+                            <li>Those interested in smart building technology</li>
+                            <li>Customer-facing service work</li>
+                            <li>HVAC and climate control systems</li>
+                            <li>Primarily field-based work</li>
+                        </ul>
+
+                        <h4 style="color: var(--bas-green); margin: 20px 0 10px;">Key Skills:</h4>
+                        <ul>
+                            <li>BAS platform programming (Metasys, WebCTRL)</li>
+                            <li>HVAC system knowledge</li>
+                            <li>Network protocols (BACnet, Modbus)</li>
+                            <li>Energy management & optimization</li>
+                            <li>Customer communication</li>
+                        </ul>
+
+                        <h4 style="color: var(--bas-green); margin: 20px 0 10px;">Industries:</h4>
+                        <ul>
+                            <li>Commercial office buildings</li>
+                            <li>Hospitals & healthcare</li>
+                            <li>Educational institutions</li>
+                            <li>Data centers & tech facilities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 30px;">
+                    <strong>Good News:</strong> The skills are highly transferable! Many professionals work in both areas or transition between them. Starting with one doesn't limit your options later. Both careers offer strong demand, competitive salaries, and opportunities for growth.
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div id="nav-bar" class="nav-bar">
+            <div class="nav-title" id="nav-title"></div>
+            <button class="back-btn" onclick="showHome()">← Back to Career Selection</button>
+        </div>
+
+        <!-- Control Panel Content -->
+        <div id="control-panel-content" class="content-section control-panel-content">
+            <div class="section">
+                <h2>Career Overview</h2>
+                <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">
+                    Control panel technicians are specialized professionals who design, build, install, troubleshoot, and maintain electrical control panels used in industrial, commercial, and manufacturing environments. These panels serve as the nerve centers for automated systems, machinery, and industrial processes.
+                </p>
+                
+                <div class="info-box">
+                    <strong>What is a Control Panel?</strong><br>
+                    A control panel is an enclosure containing electrical components like circuit breakers, relays, PLCs (Programmable Logic Controllers), variable frequency drives (VFDs), and other devices that control and monitor electrical equipment and industrial processes.
+                </div>
+
+                <h3>Primary Responsibilities</h3>
+                <ul>
+                    <li>Reading and interpreting electrical schematics, blueprints, and wiring diagrams</li>
+                    <li>Assembling control panels according to engineering specifications</li>
+                    <li>Installing panels at customer sites and connecting to equipment</li>
+                    <li>Programming and configuring PLCs, HMIs, and other control devices</li>
+                    <li>Testing and troubleshooting electrical circuits and control systems</li>
+                    <li>Performing preventive maintenance and emergency repairs</li>
+                    <li>Documenting work, creating as-built drawings, and maintaining records</li>
+                    <li>Ensuring compliance with electrical codes (NEC, UL, CSA) and safety standards</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Essential Skills & Knowledge</h2>
+
+                <div class="cards-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h4>Electrical Knowledge</h4>
+                        <ul>
+                            <li>AC/DC circuits</li>
+                            <li>Three-phase power systems</li>
+                            <li>Motor controls</li>
+                            <li>Transformers & power supplies</li>
+                            <li>Grounding & bonding</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🔧</span>
+                        <h4>Technical Skills</h4>
+                        <ul>
+                            <li>Wire termination & crimping</li>
+                            <li>Panel layout design</li>
+                            <li>Component mounting</li>
+                            <li>Cable routing & management</li>
+                            <li>Soldering techniques</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">💻</span>
+                        <h4>Programming & Software</h4>
+                        <ul>
+                            <li>PLC programming (ladder logic)</li>
+                            <li>HMI development</li>
+                            <li>CAD software (AutoCAD Electrical)</li>
+                            <li>Drive configuration</li>
+                            <li>Network protocols (Ethernet/IP, Modbus)</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛠️</span>
+                        <h4>Tools & Equipment</h4>
+                        <ul>
+                            <li>Multimeters & megohmmeters</li>
+                            <li>Oscilloscopes</li>
+                            <li>Power tools & hand tools</li>
+                            <li>Wire strippers & crimpers</li>
+                            <li>Testing equipment</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">📋</span>
+                        <h4>Standards & Codes</h4>
+                        <ul>
+                            <li>National Electrical Code (NEC)</li>
+                            <li>NFPA 70E (Electrical Safety)</li>
+                            <li>UL 508A (Industrial Control Panels)</li>
+                            <li>IEC standards</li>
+                            <li>OSHA regulations</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🧠</span>
+                        <h4>Soft Skills</h4>
+                        <ul>
+                            <li>Problem-solving & troubleshooting</li>
+                            <li>Attention to detail</li>
+                            <li>Time management</li>
+                            <li>Customer communication</li>
+                            <li>Teamwork & collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Education & Training</h2>
+                
+                <h3>Educational Requirements</h3>
+                <ul>
+                    <li><strong>High School Diploma:</strong> Minimum requirement with strong math and science background</li>
+                    <li><strong>Associate Degree (Recommended):</strong> Electrical Technology, Industrial Automation, or Mechatronics</li>
+                    <li><strong>Apprenticeships:</strong> 3-4 year programs combining classroom instruction with on-the-job training</li>
+                    <li><strong>Technical Schools:</strong> Certificate programs in electrical systems and PLC programming</li>
+                </ul>
+
+                <h3>Key Certifications</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Certification</th>
+                            <th>Issuing Body</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Journeyman Electrician License</td>
+                            <td>State Licensing Board</td>
+                            <td>Essential for many positions</td>
+                        </tr>
+                        <tr>
+                            <td>UL 508A Control Panel Certification</td>
+                            <td>Underwriters Laboratories</td>
+                            <td>Industry standard for panel builders</td>
+                        </tr>
+                        <tr>
+                            <td>Certified Control Systems Technician (CCST)</td>
+                            <td>ISA</td>
+                            <td>Demonstrates technical competency</td>
+                        </tr>
+                        <tr>
+                            <td>NFPA 70E Electrical Safety</td>
+                            <td>NFPA</td>
+                            <td>Required for workplace safety</td>
+                        </tr>
+                        <tr>
+                            <td>Rockwell/Siemens PLC Programming</td>
+                            <td>Manufacturer</td>
+                            <td>Platform-specific expertise</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Career Progression</h2>
+
+                <div class="success-box">
+                    <strong>Entry Level (0-2 years)</strong><br>
+                    <strong>Title:</strong> Control Panel Assembler / Junior Technician<br>
+                    <strong>Salary:</strong> $35,000 - $50,000<br>
+                    <strong>Focus:</strong> Learning to read schematics, basic wiring, component installation, following build procedures under supervision
+                </div>
+
+                <div class="success-box">
+                    <strong>Mid-Level (2-5 years)</strong><br>
+                    <strong>Title:</strong> Control Panel Technician<br>
+                    <strong>Salary:</strong> $50,000 - $70,000<br>
+                    <strong>Focus:</strong> Independent panel builds, field installations, troubleshooting, basic PLC programming, customer interaction
+                </div>
+
+                <div class="success-box">
+                    <strong>Senior Level (5-10 years)</strong><br>
+                    <strong>Title:</strong> Senior Control Panel Technician / Lead Technician<br>
+                    <strong>Salary:</strong> $70,000 - $90,000<br>
+                    <strong>Focus:</strong> Complex systems, mentoring juniors, design input, advanced troubleshooting, project management
+                </div>
+
+                <div class="success-box">
+                    <strong>Advanced/Specialist (10+ years)</strong><br>
+                    <strong>Title:</strong> Control Systems Engineer / Technical Manager<br>
+                    <strong>Salary:</strong> $85,000 - $120,000+<br>
+                    <strong>Focus:</strong> System design, engineering oversight, department management, client consultation, strategic planning
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Industry Resources</h2>
+
+                <h3>Professional Organizations</h3>
+                <ul>
+                    <li><strong>ISA (International Society of Automation):</strong> Training, certifications, networking</li>
+                    <li><strong>IEEE (Institute of Electrical and Electronics Engineers):</strong> Standards, publications</li>
+                    <li><strong>NECA (National Electrical Contractors Association):</strong> Industry resources</li>
+                    <li><strong>Local IBEW:</strong> Union representation, training programs</li>
+                </ul>
+
+                <h3>Learning Resources</h3>
+                <ul>
+                    <li><strong>PLC Programming Courses:</strong> Udemy, LinkedIn Learning, manufacturer training</li>
+                    <li><strong>YouTube Channels:</strong> RealPars, PLCGurus, The Engineering Mindset</li>
+                    <li><strong>Forums:</strong> PLCTalk.net, Reddit r/PLC, Control.com forums</li>
+                    <li><strong>Essential Reading:</strong> NFPA 70 (NEC), UL 508A Standard, "Practical Guide to Industrial Safety"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Building Automation Content -->
+        <div id="building-automation-content" class="content-section building-automation-content">
+            <div class="section">
+                <h2>Career Overview</h2>
+                <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 20px;">
+                    Building Automation Technicians are specialists who install, program, maintain, and troubleshoot intelligent building systems that control HVAC (heating, ventilation, and air conditioning), lighting, security, fire safety, and energy management in commercial buildings, hospitals, schools, data centers, and industrial facilities.
+                </p>
+
+                <div class="info-box">
+                    <strong>What is Building Automation?</strong><br>
+                    Building Automation Systems (BAS), also called Building Management Systems (BMS), use networked sensors, controllers, and software to automatically monitor and control mechanical and electrical equipment. These systems optimize comfort, energy efficiency, and operational costs while enabling remote monitoring and predictive maintenance.
+                </div>
+
+                <h3>Core Responsibilities</h3>
+                <div class="cards-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🔧</span>
+                        <h4>Installation & Setup</h4>
+                        <ul>
+                            <li>Install sensors, controllers, and actuators</li>
+                            <li>Run control wiring and network cables</li>
+                            <li>Mount and configure equipment</li>
+                            <li>Commission new systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">💻</span>
+                        <h4>Programming & Configuration</h4>
+                        <ul>
+                            <li>Program BAS controllers and sequences</li>
+                            <li>Configure graphics and dashboards</li>
+                            <li>Set up schedules and alarms</li>
+                            <li>Integrate multiple systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🔍</span>
+                        <h4>Troubleshooting & Repair</h4>
+                        <ul>
+                            <li>Diagnose system malfunctions</li>
+                            <li>Replace faulty components</li>
+                            <li>Resolve communication issues</li>
+                            <li>Emergency service calls</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛠️</span>
+                        <h4>Maintenance & Optimization</h4>
+                        <ul>
+                            <li>Perform preventive maintenance</li>
+                            <li>Calibrate sensors and devices</li>
+                            <li>Optimize control sequences</li>
+                            <li>Generate performance reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Essential Skills & Knowledge</h2>
+
+                <h3>Platform-Specific Skills</h3>
+                <div class="cards-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🏢</span>
+                        <h4>Major BAS Platforms</h4>
+                        <ul>
+                            <li>Johnson Controls Metasys</li>
+                            <li>Honeywell Enterprise Buildings Integrator (EBI)</li>
+                            <li>Siemens Desigo</li>
+                            <li>Trane Tracer</li>
+                            <li>Schneider Electric EcoStruxure</li>
+                            <li>Automated Logic WebCTRL</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h4>Communication Protocols</h4>
+                        <ul>
+                            <li>BACnet (IP, MSTP)</li>
+                            <li>Modbus (RTU, TCP)</li>
+                            <li>LonWorks</li>
+                            <li>KNX</li>
+                            <li>Ethernet/IP</li>
+                            <li>OPC/OPC UA</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛠️</span>
+                        <h4>Tools & Equipment</h4>
+                        <ul>
+                            <li>Multimeters & clamp meters</li>
+                            <li>Network testing tools</li>
+                            <li>Laptop with BAS software</li>
+                            <li>Temperature/humidity meters</li>
+                            <li>Wire tracers & testers</li>
+                            <li>Hand tools & power tools</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <h4>Knowledge Areas</h4>
+                        <ul>
+                            <li>HVAC psychrometrics</li>
+                            <li>Control theory & sequences</li>
+                            <li>IP networking & subnetting</li>
+                            <li>Electrical schematics</li>
+                            <li>Energy efficiency principles</li>
+                            <li>Building codes & standards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Education & Certification</h2>
+
+                <h3>Educational Requirements</h3>
+                <ul>
+                    <li><strong>High School Diploma or GED:</strong> Minimum requirement for entry-level positions</li>
+                    <li><strong>Associate Degree (Preferred):</strong> HVAC Technology, Building Automation, Electrical Technology, or related field</li>
+                    <li><strong>Trade School Certificates:</strong> HVAC/R technician programs with controls emphasis</li>
+                    <li><strong>Apprenticeships:</strong> 2-4 year programs combining classroom and hands-on training</li>
+                </ul>
+
+                <h3>Industry Certifications</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Certification</th>
+                            <th>Issuing Organization</th>
+                            <th>Value & Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Certified Building Automation Professional (CBAP)</td>
+                            <td>BOMA</td>
+                            <td>Industry-recognized credential for BAS professionals</td>
+                        </tr>
+                        <tr>
+                            <td>BACnet Testing Laboratories (BTL) Certification</td>
+                            <td>ASHRAE</td>
+                            <td>Protocol expertise validation</td>
+                        </tr>
+                        <tr>
+                            <td>EPA 608 Certification</td>
+                            <td>EPA</td>
+                            <td>Required for handling refrigerants (Type II or Universal)</td>
+                        </tr>
+                        <tr>
+                            <td>NATE Certification</td>
+                            <td>NATE</td>
+                            <td>HVAC service excellence</td>
+                        </tr>
+                        <tr>
+                            <td>Manufacturer Certifications</td>
+                            <td>Johnson Controls, Honeywell, Siemens, etc.</td>
+                            <td>Platform-specific expertise (highly valued)</td>
+                        </tr>
+                        <tr>
+                            <td>LEED Green Associate</td>
+                            <td>USGBC</td>
+                            <td>Energy efficiency and sustainability knowledge</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="success-box">
+                    <strong>Pro Tip:</strong> Manufacturer-specific certifications (like Johnson Controls Certified Technician or Honeywell Building Controls Specialist) are often the most valuable for employment, as many companies specialize in particular platforms.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Career Progression</h2>
+
+                <div class="success-box">
+                    <strong>Entry Level (0-2 years)</strong><br>
+                    <strong>Title:</strong> BAS Technician Trainee / Helper<br>
+                    <strong>Salary:</strong> $40,000 - $55,000<br>
+                    <strong>Focus:</strong> Learn system basics, assist senior technicians with installations, perform simple troubleshooting, run cables, mount devices
+                    <div style="margin-top: 10px;">
+                        <span class="badge">On-the-job training</span>
+                        <span class="badge green">First certifications</span>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>Mid-Level (2-5 years)</strong><br>
+                    <strong>Title:</strong> Building Automation Technician<br>
+                    <strong>Salary:</strong> $55,000 - $75,000<br>
+                    <strong>Focus:</strong> Independent system installation and programming, handle service calls, troubleshoot complex issues, configure graphics and dashboards
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Advanced certifications</span>
+                        <span class="badge green">Multi-platform skills</span>
+                        <span class="badge orange">Customer-facing</span>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>Senior Level (5-10 years)</strong><br>
+                    <strong>Title:</strong> Senior BAS Technician / Lead Technician<br>
+                    <strong>Salary:</strong> $75,000 - $95,000<br>
+                    <strong>Focus:</strong> Lead complex projects, mentor junior technicians, design control sequences, perform system integration, optimize energy performance
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Project leadership</span>
+                        <span class="badge green">Energy optimization</span>
+                        <span class="badge orange">Mentoring</span>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>Advanced (10+ years)</strong><br>
+                    <strong>Title:</strong> BAS Engineer / Controls Manager / Regional Manager<br>
+                    <strong>Salary:</strong> $90,000 - $120,000+<br>
+                    <strong>Focus:</strong> System design and engineering, department management, strategic planning, business development, training development
+                    <div style="margin-top: 10px;">
+                        <span class="badge">Management</span>
+                        <span class="badge green">Engineering design</span>
+                        <span class="badge orange">Business development</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Industry Trends & Future</h2>
+
+                <div class="success-box">
+                    <strong>Market Outlook:</strong> The Building Automation Systems market is projected to grow significantly (15%+ annually) driven by smart building adoption, energy efficiency mandates, IoT integration, and the need to modernize aging building infrastructure. Demand for skilled technicians far exceeds supply in most markets.
+                </div>
+
+                <h3>Emerging Technologies</h3>
+                <div class="cards-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">☁️</span>
+                        <h4>Cloud-Based BAS</h4>
+                        <p>Cloud platforms enabling remote monitoring, analytics, and control from anywhere. Subscription-based models reducing upfront costs.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🤖</span>
+                        <h4>AI & Machine Learning</h4>
+                        <p>Predictive maintenance, fault detection diagnostics (FDD), and autonomous optimization of building performance.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h4>IoT Integration</h4>
+                        <p>Wireless sensors, edge computing, and integration with smart meters, lighting, and occupancy systems.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛡️</span>
+                        <h4>Cybersecurity Focus</h4>
+                        <p>Increasing emphasis on securing building systems against cyber threats and ransomware attacks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Professional Resources</h2>
+
+                <h3>Professional Organizations</h3>
+                <ul>
+                    <li><strong>ASHRAE:</strong> Standards, education, and networking for HVAC professionals</li>
+                    <li><strong>BOMA:</strong> Building automation professional development</li>
+                    <li><strong>AEE:</strong> Energy efficiency and building systems focus</li>
+                    <li><strong>BACnet International:</strong> Protocol standardization and education</li>
+                </ul>
+
+                <h3>Training & Learning</h3>
+                <ul>
+                    <li><strong>Manufacturer Training:</strong> Johnson Controls, Honeywell, Siemens, Trane offer extensive courses</li>
+                    <li><strong>Online Courses:</strong> Udemy (BACnet, HVAC controls), LinkedIn Learning</li>
+                    <li><strong>YouTube Channels:</strong> The Engineering Mindset, MEP Academy, HVAC School</li>
+                    <li><strong>Forums:</strong> r/BAS (Reddit), ControlTrends Community, HVAC-Talk</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>INDUSTRIAL CONTROLS & AUTOMATION CAREER GUIDE</strong></p>
+            <p>Your comprehensive resource for building a rewarding career in technical automation</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-gray);">
+                Version 1.0 | 2025 Edition<br>
+                This guide provides general career information. Requirements vary by location and employer.<br>
+                Always verify certification requirements and local regulations.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function showCareer(career) {
+            // Hide selection
+            document.getElementById('career-selection').style.display = 'none';
+            document.getElementById('comparison-section').style.display = 'none';
+            
+            // Show navigation
+            const navBar = document.getElementById('nav-bar');
+            navBar.classList.add('active');
+            
+            // Show appropriate content
+            if (career === 'control-panel') {
+                document.getElementById('control-panel-content').classList.add('active');
+                document.getElementById('nav-title').textContent = 'Control Panel Technician Guide';
+            } else {
+                document.getElementById('building-automation-content').classList.add('active');
+                document.getElementById('nav-title').textContent = 'Building Automation Technician Guide';
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHome() {
+            // Hide all content
+            document.getElementById('control-panel-content').classList.remove('active');
+            document.getElementById('building-automation-content').classList.remove('active');
+            document.getElementById('nav-bar').classList.remove('active');
+            
+            // Show selection
+            document.getElementById('career-selection').style.display = 'grid';
+            document.getElementById('comparison-section').style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
